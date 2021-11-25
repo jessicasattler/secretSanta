@@ -1,3 +1,8 @@
+import pandas as pd
 from tkinter.filedialog import askopenfilename
-filenameforReading = askopenfilename()
-print("You can read from "+ filenameforReading)
+#filenameforReading = askopenfilename()
+filenameforReading = 'people.csv'
+people_df = pd.read_csv(filenameforReading)
+print(people_df)
+
+

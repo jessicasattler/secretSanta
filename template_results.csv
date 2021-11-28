@@ -1,0 +1,9 @@
+personName,contact,language,familyUnit,giftRecipientID,giftRecipientPerson
+John Jacob Jingle,jingle@coldmail.com,English,John's House,5,Mr. Grunch
+Lauren Jingle,llcooljingle@coldmail.com,English,John's House,7,Gingerbread Tallywink
+Blitzen,bl_deer@reindeergames.com,Spanish,Reindeer Fam,6,Sugarfoot Tallywink
+Dasher,dash_of_dasher@pawhoo.com,Spanish,Reindeer Fam,1,Lauren Jingle
+Rudolph,rudolph.p.reindeer@gmail.com,English,Reindeer Fam,0,John Jacob Jingle
+Mr. Grunch,a_mean_one@gmail.com,English,Grunch Bunch,2,Blitzen
+Sugarfoot Tallywink,sgtallywink@coldmail.com,English,The Elf Shelf,4,Rudolph
+Gingerbread Tallywink,gingywink@pawhoo.com,English,The Elf Shelf,3,Dasher

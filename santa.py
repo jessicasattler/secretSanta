@@ -1,57 +1,45 @@
-import pandas as pd
 import random
 import ezgmail
 from tkinter.filedialog import askopenfilename
 
-def send_email(x):
-    if x.language == 'Spanish':
-        subject = f"{x.personName}'s Regalo Secreto"
-        body = f"""Hola {x.personName},
+filenameforReading = askopenfilename()
+fileVariable = open(filenameforReading, 'r')
+print(fileVariable.readlines())
+fileVariable.close()
+class Person:
 
-Se te ha asignado una persona muy especial para darle un regalo esta Navidad. Esa persona es {x.giftRecipientPerson}.
+    count = 0
+
+    def __init__(self, name, contact, family, language):
+        self.id = Person.count
+        self.name = name
+        self.contact = contact
+        self.language = language
+        self.family = family 
+        self.recipient = None
+
+        Person.count += 1
+
+    def sendEmail(self):
+        if self.language == 'Spanish':
+            subject = f"{self.name}'s Regalo Secreto"
+            body = f"""Hola {self.name},
+Se te ha asignado una persona muy especial para darle un regalo esta Navidad. Esa persona es {self.recipient}.
 
 ¿Quién te va a dar un regalo a ti? Shh, eso es un secreto ...
             
-¡Feliz Navidad!"""
-
-    else:
-        subject = f"{x.personName}'s Secret Santa Assignment"
-        body = f"""Hello {x.personName},
+¡Feliz Navidad! """
+        elif self.language == 'English':
+            subject = f"{self.name}'s Secret Santa Assignment"
+            body = f"""Hello {self.name},
                 
-You have been assigned a very special person to give a gift to this Christmas. The person you have assigned is {x.giftRecipientPerson}.
+You have been assigned a very special person to give a gift to this Christmas. The person you have been assigned is {self.recipient}.
 
 Who is giving you a gift? Shh, that's a secret.... 
             
 Merry Christmas!"""
-
-    ezgmail.send(x.contact,subject,body)
-    return
-
-filenameforReading = askopenfilename()
-people_df = pd.read_csv(filenameforReading)
-
-while True:
-    people_df['giftRecipientID'] = -1
-    #print(people_df)
-    try:
-        for id in list(people_df.index):
-            #print(id)
-            #print(people_df.loc[id, 'personName'])
-            notFamilyBool = people_df.loc[id, 'familyUnit'] != people_df['familyUnit']
-            #print(notFamilyBool)
-            notFamily = people_df[notFamilyBool].index
-            #print(notFamily)
-            alreadyAssignedID = people_df['giftRecipientID']
-            #print(alreadyAssignedID)
-            #print(set(notFamily)-set(alreadyAssignedID))
-            people_df.loc[id, 'giftRecipientID'] = random.choice(list(set(notFamily)-set(alreadyAssignedID)))
-        break
-    except:
-        continue
-
-people_df['giftRecipientPerson'] = people_df['giftRecipientID'].apply(lambda x: people_df.loc[x, 'personName'])
-people_df.apply(send_email,axis=1)
-people_df.to_csv(f"{filenameforReading[:-4]}_results.csv", index = False)
+        ezgmail.send(self.contact,subject,body)
+    
 
 
 

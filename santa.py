@@ -4,7 +4,10 @@ from tkinter.filedialog import askopenfilename
 
 filenameforReading = askopenfilename()
 fileVariable = open(filenameforReading, 'r')
-print(fileVariable.readlines())
+for idx, line in enumerate(fileVariable.readlines()):
+    if idx != 0:
+        people = line.split(',')
+        print(people)
 fileVariable.close()
 class Person:
 
